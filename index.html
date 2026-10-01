@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>02: I Made This For You ♡</title>
+  <title>Happy 2nd Monthsary ♡</title>
 
   <style>
     * {
@@ -29,15 +29,20 @@
       padding: 28px 22px;
       position: relative;
       overflow: hidden;
+
       background:
         radial-gradient(circle at 15% 15%, #fff8c9 0 4%, transparent 5%),
         radial-gradient(circle at 85% 20%, #dcefff 0 5%, transparent 6%),
         linear-gradient(160deg, #fff4f7, #edf7ff 55%, #f5efff);
+
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
       text-align: center;
     }
+
+    /* soft clouds */
 
     .cloud {
       position: absolute;
@@ -58,87 +63,152 @@
       right: -40px;
     }
 
+    /* floating decorations */
+
     .star {
       position: absolute;
       font-size: 22px;
       animation: float 3s ease-in-out infinite;
     }
 
-    .s1 { top: 18%; left: 12%; }
-    .s2 { top: 28%; right: 12%; animation-delay: .7s; }
-    .s3 { bottom: 23%; left: 18%; animation-delay: 1.2s; }
-    .s4 { bottom: 14%; right: 18%; animation-delay: .4s; }
+    .s1 {
+      top: 18%;
+      left: 12%;
+    }
+
+    .s2 {
+      top: 28%;
+      right: 12%;
+      animation-delay: .7s;
+    }
+
+    .s3 {
+      bottom: 23%;
+      left: 18%;
+      animation-delay: 1.2s;
+    }
+
+    .s4 {
+      bottom: 14%;
+      right: 18%;
+      animation-delay: .4s;
+    }
 
     @keyframes float {
-      0%,100% { transform: translateY(0) rotate(0deg); }
-      50% { transform: translateY(-8px) rotate(8deg); }
+      0%,100% {
+        transform: translateY(0) rotate(0deg);
+      }
+
+      50% {
+        transform: translateY(-8px) rotate(8deg);
+      }
     }
 
-    .cat {
-      font-size: 58px;
-      margin-bottom: 12px;
-      animation: bounce 2.5s ease-in-out infinite;
-    }
+    /* main title */
 
-    @keyframes bounce {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-7px); }
-    }
-
-    .number {
-      font-size: 15px;
-      letter-spacing: 5px;
-      color: #a486a8;
-      margin-bottom: 12px;
-    }
-
-    h1 {
+    .title {
       margin: 0;
       font-size: 34px;
-      line-height: 1.08;
-      letter-spacing: 1px;
+      line-height: 1.1;
+      letter-spacing: .5px;
       color: #55465d;
     }
 
-    .subtitle {
-      margin: 18px auto 8px;
-      max-width: 290px;
-      font-size: 16px;
-      line-height: 1.6;
-      color: #756879;
+    .made {
+      margin-top: 12px;
+      font-size: 14px;
+      letter-spacing: 3px;
+      color: #a486a8;
     }
 
-    .tiny {
-      font-size: 13px;
-      color: #a18d9e;
-      margin-bottom: 28px;
+    .divider {
+      width: 45px;
+      height: 1px;
+      background: #cdb8c9;
+      margin: 25px auto 18px;
     }
+
+    .from {
+      font-size: 14px;
+      letter-spacing: 3px;
+      color: #756879;
+      margin-bottom: 7px;
+    }
+
+    .date {
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #a18d9e;
+    }
+
+    /* button */
 
     button {
+      margin-top: 38px;
       border: 0;
       background: #f4a9bd;
       color: white;
       font-family: inherit;
-      font-size: 16px;
+      font-size: 15px;
+      letter-spacing: 1px;
       padding: 13px 30px;
       border-radius: 30px;
       box-shadow: 0 6px 16px rgba(180, 120, 145, .18);
       cursor: pointer;
-      transition: .2s;
+      transition: .2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
     }
 
     button:active {
       transform: scale(.95);
     }
 
-    .hidden {
+    /* second screen */
+
+    .welcome {
       display: none;
+      animation: fadeIn .8s ease forwards;
     }
 
-    .message {
-      margin-top: 24px;
-      font-size: 14px;
-      color: #8b7484;
+    .welcome-number {
+      font-size: 15px;
+      letter-spacing: 5px;
+      color: #a486a8;
+      margin-bottom: 18px;
+    }
+
+    .welcome-title {
+      font-size: 27px;
+      line-height: 1.3;
+      color: #55465d;
+      margin: 0;
+    }
+
+    .welcome-text {
+      margin: 20px auto 0;
+      max-width: 290px;
+      font-size: 15px;
+      line-height: 1.7;
+      color: #756879;
+    }
+
+    .enter {
+      margin-top: 28px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
@@ -155,41 +225,83 @@
     <div class="star s3">☆</div>
     <div class="star s4">✧</div>
 
-    <div class="cat">૮ ˶ᵔ ᵕ ᵔ˶ ა</div>
 
-    <div class="number">02</div>
+    <!-- OPENING -->
 
-    <h1>I MADE THIS<br>FOR YOU</h1>
+    <section id="opening">
 
-    <p class="subtitle">
-      A little something for you,<br>
-      made with a little bit of love.
-    </p>
+      <h1 class="title">
+        Happy 2nd Monthsary
+      </h1>
 
-    <p class="tiny">
-      take your time, babe ♡
-    </p>
+      <div class="made">
+        I MADE THIS FOR YOU
+      </div>
 
-    <button onclick="startGame()">
-      ENTER ♡
-    </button>
+      <div class="divider"></div>
 
-    <p id="after" class="message hidden">
-      okay... let's begin. ♡
-    </p>
+      <div class="from">
+        BRIAN → JEAN
+      </div>
+
+      <div class="date">
+        13.09.26
+      </div>
+
+      <button onclick="openWelcome()">
+        OPEN ♡
+      </button>
+
+    </section>
+
+
+    <!-- WELCOME -->
+
+    <section id="welcome" class="welcome">
+
+      <div class="welcome-number">
+        01 — WELCOME
+      </div>
+
+      <h2 class="welcome-title">
+        I made a little<br>
+        something for you.
+      </h2>
+
+      <p class="welcome-text">
+        It's not much.<br>
+        Just a few things I wanted you to find.
+      </p>
+
+      <button class="enter" onclick="enterRoom()">
+        ENTER ♡
+      </button>
+
+    </section>
 
   </main>
 
-  <script>
-    function startGame() {
-      document.querySelector("button").style.display = "none";
-      document.querySelector("#after").classList.remove("hidden");
 
-      setTimeout(() => {
-        alert("The little journey begins... ♡");
-      }, 500);
+  <script>
+
+    function openWelcome() {
+
+      document.getElementById("opening").style.display = "none";
+
+      const welcome = document.getElementById("welcome");
+
+      welcome.style.display = "block";
+
     }
+
+
+    function enterRoom() {
+
+      alert("Our little place is waiting... ♡");
+
+    }
+
   </script>
 
 </body>
-  </html>
+</html>
