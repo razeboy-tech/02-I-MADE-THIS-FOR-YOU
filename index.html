@@ -1,704 +1,825 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>02: I Made This For You ♡</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: #fceef4;
-      font-family: Georgia, serif;
-      color: #51465a;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-    }
-
-    .phone {
-      width: 100%;
-      max-width: 430px;
-      min-height: 100vh;
-      padding: 28px 22px;
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 15% 15%, #fff8c9 0 4%, transparent 5%),
-        radial-gradient(circle at 85% 20%, #dcefff 0 5%, transparent 6%),
-        linear-gradient(160deg, #fff4f7, #edf7ff 55%, #f5efff);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
-    }
-
-    /* ---------- DECORATIONS ---------- */
-
-    .cloud {
-      position: absolute;
-      width: 110px;
-      height: 45px;
-      background: rgba(255,255,255,.65);
-      border-radius: 50px;
-      filter: blur(1px);
-    }
-
-    .cloud.one {
-      top: 80px;
-      left: -35px;
-    }
-
-    .cloud.two {
-      bottom: 100px;
-      right: -40px;
-    }
-
-    .star {
-      position: absolute;
-      font-size: 22px;
-      animation: float 3s ease-in-out infinite;
-    }
-
-    .s1 {
-      top: 12%;
-      left: 10%;
-    }
-
-    .s2 {
-      top: 20%;
-      right: 10%;
-      animation-delay: .7s;
-    }
-
-    .s3 {
-      bottom: 20%;
-      left: 12%;
-      animation-delay: 1.2s;
-    }
-
-    .s4 {
-      bottom: 12%;
-      right: 13%;
-      animation-delay: .4s;
-    }
-
-    @keyframes float {
-      0%,100% {
-        transform: translateY(0) rotate(0deg);
-      }
-
-      50% {
-        transform: translateY(-7px) rotate(8deg);
-      }
-    }
-
-
-    /* ---------- OPENING ---------- */
-
-    #opening {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .title {
-      margin: 0;
-      font-size: 34px;
-      line-height: 1.1;
-      letter-spacing: .5px;
-      color: #55465d;
-    }
-
-    .made {
-      margin-top: 12px;
-      font-size: 14px;
-      letter-spacing: 3px;
-      color: #a486a8;
-    }
-
-    .divider {
-      width: 45px;
-      height: 1px;
-      background: #cdb8c9;
-      margin: 25px auto 18px;
-    }
-
-    .from {
-      font-size: 14px;
-      letter-spacing: 3px;
-      color: #756879;
-      margin-bottom: 7px;
-    }
-
-    .date {
-      font-size: 12px;
-      letter-spacing: 3px;
-      color: #a18d9e;
-    }
-
-
-    /* ---------- BUTTON ---------- */
-
-    button {
-      border: 0;
-      background: #f4a9bd;
-      color: white;
-      font-family: inherit;
-      font-size: 15px;
-      letter-spacing: 1px;
-      padding: 13px 30px;
-      border-radius: 30px;
-      box-shadow: 0 6px 16px rgba(180, 120, 145, .18);
-      cursor: pointer;
-      transition: .2s ease;
-    }
-
-    button:hover {
-      transform: translateY(-2px);
-    }
-
-    button:active {
-      transform: scale(.95);
-    }
-
-    .open-button {
-      margin-top: 38px;
-    }
-
-
-    /* ---------- WELCOME ---------- */
-
-    #welcome {
-      display: none;
-      animation: fadeIn .7s ease forwards;
-    }
-
-    .welcome-number {
-      font-size: 15px;
-      letter-spacing: 4px;
-      color: #a486a8;
-      margin-bottom: 18px;
-    }
-
-    .welcome-title {
-      font-size: 27px;
-      line-height: 1.3;
-      color: #55465d;
-      margin: 0;
-    }
-
-    .welcome-text {
-      margin: 20px auto 0;
-      max-width: 290px;
-      font-size: 15px;
-      line-height: 1.7;
-      color: #756879;
-    }
-
-    .enter {
-      margin-top: 28px;
-    }
-
-
-    /* ---------- OUR LITTLE PLACE ---------- */
-
-    #room {
-      display: none;
-      animation: fadeIn .7s ease forwards;
-      width: 100%;
-    }
-
-    .room-number {
-      font-size: 13px;
-      letter-spacing: 3px;
-      color: #a486a8;
-      margin-bottom: 8px;
-    }
-
-    .room-title {
-      margin: 0;
-      font-size: 28px;
-      color: #55465d;
-    }
-
-    .room-subtitle {
-      margin: 10px auto 22px;
-      font-size: 14px;
-      line-height: 1.5;
-      color: #806f7d;
-    }
-
-
-    /* ---------- SCRAPBOOK ROOM ---------- */
-
-    .room-board {
-      position: relative;
-      width: 100%;
-      max-width: 360px;
-      height: 350px;
-      margin: 0 auto;
-      border-radius: 28px;
-      background: rgba(255,255,255,.48);
-      border: 1px solid rgba(255,255,255,.8);
-      box-shadow: 0 12px 35px rgba(160,120,150,.12);
-      backdrop-filter: blur(6px);
-    }
-
-
-    /* clickable objects */
-
-    .object {
-      position: absolute;
-      border: 0;
-      background: transparent;
-      padding: 0;
-      box-shadow: none;
-      cursor: pointer;
-      transition: transform .2s ease;
-      font-family: inherit;
-    }
-
-    .object:hover {
-      transform: scale(1.08) rotate(-2deg);
-    }
-
-    .object:active {
-      transform: scale(.94);
-    }
-
-
-    /* polaroid */
-
-    .polaroid {
-      top: 25px;
-      left: 30px;
-      width: 100px;
-      height: 115px;
-      background: white;
-      padding: 8px 8px 18px;
-      transform: rotate(-6deg);
-      box-shadow: 0 5px 12px rgba(80,60,80,.15);
-    }
-
-    .polaroid-picture {
-      width: 84px;
-      height: 78px;
-      background: linear-gradient(135deg,#f8c9d8,#dcefff);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 30px;
-    }
-
-
-    /* envelope */
-
-    .envelope {
-      top: 35px;
-      right: 30px;
-      width: 105px;
-      height: 78px;
-      background: #fff4f7;
-      border: 2px solid #e9b7c8;
-      border-radius: 7px;
-      transform: rotate(5deg);
-      font-size: 30px;
-    }
-
-
-    /* calendar */
-
-    .calendar {
-      top: 155px;
-      left: 35px;
-      width: 95px;
-      height: 100px;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 5px 12px rgba(80,60,80,.12);
-      transform: rotate(3deg);
-      overflow: hidden;
-    }
-
-    .calendar-top {
-      background: #f4a9bd;
-      color: white;
-      padding: 7px;
-      font-size: 11px;
-      letter-spacing: 1px;
-    }
-
-    .calendar-date {
-      font-size: 32px;
-      color: #66566a;
-      margin-top: 8px;
-    }
-
-
-    /* music player */
-
-    .music {
-      top: 145px;
-      right: 27px;
-      width: 112px;
-      height: 85px;
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 5px 12px rgba(80,60,80,.12);
-      transform: rotate(-3deg);
-      padding: 10px;
-    }
-
-    .music-disc {
-      font-size: 30px;
-      margin-bottom: 3px;
-    }
-
-    .music-text {
-      font-size: 11px;
-      color: #806f7d;
-    }
-
-
-    /* plushie */
-
-    .plushie {
-      bottom: 22px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 58px;
-    }
-
-    .plushie:hover {
-      transform: translateX(-50%) scale(1.08);
-    }
-
-
-    /* little stars */
-
-    .little-star {
-      font-size: 25px;
-    }
-
-    .ls1 {
-      bottom: 75px;
-      left: 28px;
-    }
-
-    .ls2 {
-      bottom: 85px;
-      right: 32px;
-    }
-
-
-    /* ---------- POPUP ---------- */
-
-    .popup {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(75,55,75,.25);
-      backdrop-filter: blur(4px);
-      align-items: center;
-      justify-content: center;
-      padding: 25px;
-      z-index: 10;
-    }
-
-    .popup-card {
-      width: 100%;
-      max-width: 330px;
-      background: #fffafc;
-      border-radius: 22px;
-      padding: 25px 22px;
-      box-shadow: 0 15px 40px rgba(80,60,80,.2);
-      animation: popup .25s ease;
-    }
-
-    .popup-card h3 {
-      margin: 0 0 10px;
-      font-size: 21px;
-      color: #55465d;
-    }
-
-    .popup-card p {
-      margin: 0;
-      font-size: 14px;
-      line-height: 1.6;
-      color: #756879;
-    }
-
-    .close {
-      margin-top: 18px;
-      padding: 9px 22px;
-      font-size: 13px;
-    }
-
-    @keyframes popup {
-      from {
-        opacity: 0;
-        transform: scale(.9);
-      }
-
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>02: I Made This For You ♡</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #fceef4;
+  font-family: Georgia, serif;
+  color: #51465a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.phone {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  padding: 28px 22px;
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at 15% 15%, #fff8c9 0 4%, transparent 5%),
+    radial-gradient(circle at 85% 20%, #dcefff 0 5%, transparent 6%),
+    linear-gradient(160deg, #fff4f7, #edf7ff 55%, #f5efff);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.cloud {
+  position: absolute;
+  width: 110px;
+  height: 45px;
+  background: rgba(255,255,255,.65);
+  border-radius: 50px;
+  filter: blur(1px);
+}
+
+.cloud.one {
+  top: 80px;
+  left: -35px;
+}
+
+.cloud.two {
+  bottom: 100px;
+  right: -40px;
+}
+
+.star {
+  position: absolute;
+  font-size: 22px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.s1 { top: 12%; left: 10%; }
+.s2 { top: 20%; right: 10%; animation-delay: .7s; }
+.s3 { bottom: 20%; left: 12%; animation-delay: 1.2s; }
+.s4 { bottom: 12%; right: 13%; animation-delay: .4s; }
+
+@keyframes float {
+  0%,100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-7px) rotate(8deg);
+  }
+}
+
+
+/* ================= OPENING ================= */
+
+#opening {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.1;
+  color: #55465d;
+}
+
+.made {
+  margin-top: 12px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  color: #a486a8;
+}
+
+.divider {
+  width: 45px;
+  height: 1px;
+  background: #cdb8c9;
+  margin: 25px auto 18px;
+}
+
+.from {
+  font-size: 14px;
+  letter-spacing: 3px;
+  color: #756879;
+  margin-bottom: 7px;
+}
+
+.date {
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #a18d9e;
+}
+
+
+/* ================= BUTTON ================= */
+
+button {
+  border: 0;
+  background: #f4a9bd;
+  color: white;
+  font-family: inherit;
+  font-size: 15px;
+  letter-spacing: 1px;
+  padding: 13px 30px;
+  border-radius: 30px;
+  box-shadow: 0 6px 16px rgba(180,120,145,.18);
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+button:active {
+  transform: scale(.95);
+}
+
+.open-button {
+  margin-top: 38px;
+}
+
+
+/* ================= WELCOME ================= */
+
+#welcome {
+  display: none;
+}
+
+.welcome-number {
+  font-size: 15px;
+  letter-spacing: 4px;
+  color: #a486a8;
+  margin-bottom: 18px;
+}
+
+.welcome-title {
+  font-size: 27px;
+  line-height: 1.3;
+  color: #55465d;
+  margin: 0;
+}
+
+.welcome-text {
+  margin: 20px auto 0;
+  max-width: 290px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #756879;
+}
+
+.enter {
+  margin-top: 28px;
+}
+
+
+/* ================= ROOM ================= */
+
+#room {
+  display: none;
+  animation: fadeIn .7s ease forwards;
+  width: 100%;
+}
+
+.room-number {
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: #a486a8;
+  margin-bottom: 8px;
+}
+
+.room-title {
+  margin: 0;
+  font-size: 28px;
+  color: #55465d;
+}
+
+.room-subtitle {
+  margin: 10px auto 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #806f7d;
+}
+
+.counter {
+  font-size: 12px;
+  color: #a486a8;
+  margin-bottom: 12px;
+}
+
+
+/* ================= ROOM BOARD ================= */
+
+.room-board {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+  height: 340px;
+  margin: auto;
+  border-radius: 28px;
+
+  background: rgba(255,255,255,.48);
+  border: 1px solid rgba(255,255,255,.8);
+
+  box-shadow: 0 12px 35px rgba(160,120,150,.12);
+  backdrop-filter: blur(6px);
+}
+
+
+/* ================= OBJECTS ================= */
+
+.object {
+  position: absolute;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.object:hover {
+  transform: scale(1.08) rotate(-2deg);
+}
+
+.object.found {
+  filter: saturate(.55);
+  opacity: .65;
+}
+
+
+/* POLAROID */
+
+.polaroid {
+  top: 22px;
+  left: 28px;
+  width: 100px;
+  height: 115px;
+
+  background: white;
+  padding: 8px 8px 18px;
+
+  transform: rotate(-6deg);
+
+  box-shadow: 0 5px 12px rgba(80,60,80,.15);
+}
+
+.polaroid-picture {
+  width: 84px;
+  height: 78px;
+
+  background: linear-gradient(135deg,#f8c9d8,#dcefff);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 30px;
+}
+
+
+/* ENVELOPE */
+
+.envelope {
+  top: 30px;
+  right: 28px;
+
+  width: 105px;
+  height: 78px;
+
+  background: #fff4f7;
+
+  border: 2px solid #e9b7c8;
+  border-radius: 7px;
+
+  transform: rotate(5deg);
+
+  font-size: 30px;
+}
+
+
+/* CALENDAR */
+
+.calendar {
+  top: 150px;
+  left: 32px;
+
+  width: 95px;
+  height: 100px;
+
+  background: white;
+  border-radius: 8px;
+
+  box-shadow: 0 5px 12px rgba(80,60,80,.12);
+
+  transform: rotate(3deg);
+
+  overflow: hidden;
+}
+
+.calendar-top {
+  background: #f4a9bd;
+  color: white;
+
+  padding: 7px;
+
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.calendar-date {
+  font-size: 32px;
+  color: #66566a;
+  margin-top: 8px;
+}
+
+
+/* MUSIC */
+
+.music {
+  top: 140px;
+  right: 25px;
+
+  width: 112px;
+  height: 85px;
+
+  background: white;
+  border-radius: 15px;
+
+  box-shadow: 0 5px 12px rgba(80,60,80,.12);
+
+  transform: rotate(-3deg);
+
+  padding: 10px;
+}
+
+.music-disc {
+  font-size: 30px;
+  margin-bottom: 3px;
+}
+
+.music-text {
+  font-size: 11px;
+  color: #806f7d;
+}
+
+
+/* PLUSHIE */
+
+.plushie {
+  bottom: 20px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  font-size: 58px;
+}
+
+.plushie:hover {
+  transform: translateX(-50%) scale(1.08);
+}
+
+
+/* STARS */
+
+.little-star {
+  font-size: 25px;
+}
+
+.ls1 {
+  bottom: 65px;
+  left: 28px;
+}
+
+.ls2 {
+  bottom: 70px;
+  right: 30px;
+}
+
+
+/* ================= CONTINUE ================= */
+
+#continueButton {
+  display: none;
+  margin: 15px auto 0;
+  animation: fadeIn .5s ease;
+}
+
+
+/* ================= POPUP ================= */
+
+.popup {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  background: rgba(75,55,75,.25);
+  backdrop-filter: blur(4px);
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 25px;
+
+  z-index: 10;
+}
+
+.popup-card {
+  width: 100%;
+  max-width: 330px;
+
+  background: #fffafc;
+
+  border-radius: 22px;
+
+  padding: 25px 22px;
+
+  box-shadow: 0 15px 40px rgba(80,60,80,.2);
+
+  animation: popup .25s ease;
+}
+
+.popup-card h3 {
+  margin: 0 0 10px;
+  font-size: 21px;
+  color: #55465d;
+}
+
+.popup-card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #756879;
+}
+
+.close {
+  margin-top: 18px;
+  padding: 9px 22px;
+  font-size: 13px;
+}
+
+@keyframes popup {
+  from {
+    opacity: 0;
+    transform: scale(.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+</style>
 </head>
+
 
 <body>
 
-  <main class="phone">
+<main class="phone">
 
-    <div class="cloud one"></div>
-    <div class="cloud two"></div>
+<div class="cloud one"></div>
+<div class="cloud two"></div>
 
-    <div class="star s1">✦</div>
-    <div class="star s2">♡</div>
-    <div class="star s3">☆</div>
-    <div class="star s4">✧</div>
+<div class="star s1">✦</div>
+<div class="star s2">♡</div>
+<div class="star s3">☆</div>
+<div class="star s4">✧</div>
 
 
-    <!-- ================= OPENING ================= -->
+<!-- ================= OPENING ================= -->
 
-    <section id="opening">
+<section id="opening">
 
-      <h1 class="title">
-        Happy 2nd Monthsary
-      </h1>
+<h1 class="title">
+Happy 2nd Monthsary sayang.
+</h1>
 
-      <div class="made">
-        I MADE THIS FOR YOU
-      </div>
+<div class="made">
+I MADE THIS FOR YOU
+</div>
 
-      <div class="divider"></div>
+<div class="divider"></div>
 
-      <div class="from">
-        BRIAN → JEAN
-      </div>
+<div class="from">
+BRIAN to JEAN
+</div>
 
-      <div class="date">
-        13.09.26
-      </div>
+<div class="date">
+13.09.26
+</div>
 
-      <button class="open-button" onclick="openWelcome()">
-        OPEN ♡
-      </button>
+<button class="open-button" onclick="openWelcome()">
+OPEN ♡
+</button>
 
-    </section>
+</section>
 
 
-    <!-- ================= WELCOME ================= -->
+<!-- ================= WELCOME ================= -->
 
-    <section id="welcome">
+<section id="welcome">
 
-      <div class="welcome-number">
-        01 — WELCOME
-      </div>
+<div class="welcome-number">
+01 — WELCOME
+</div>
 
-      <h2 class="welcome-title">
-        I made a little<br>
-        something for you.
-      </h2>
+<h2 class="welcome-title">
+I made a little<br>
+something for you.
+</h2>
 
-      <p class="welcome-text">
-        It's not much.<br>
-        Just a few things I wanted you to find.
-      </p>
+<p class="welcome-text">
+It's not much haha.<br>
+Just a few things I wanted you to find, hope you like it.
+</p>
 
-      <button class="enter" onclick="enterRoom()">
-        ENTER ♡
-      </button>
+<button class="enter" onclick="enterRoom()">
+ENTER ♡
+</button>
 
-    </section>
+</section>
 
 
-    <!-- ================= OUR LITTLE PLACE ================= -->
+<!-- ================= OUR LITTLE PLACE ================= -->
 
-    <section id="room">
+<section id="room">
 
-      <div class="room-number">
-        02 — OUR LITTLE PLACE
-      </div>
+<div class="room-number">
+02 — OUR LITTLE PLACE
+</div>
 
-      <h2 class="room-title">
-        our little place ♡
-      </h2>
+<h2 class="room-title">
+our little place ♡
+</h2>
 
-      <p class="room-subtitle">
-        there's something hidden in here.<br>
-        go look around.
-      </p>
+<p class="room-subtitle">
+there's something hidden in here.<br>
+go look around!
+</p>
 
+<div class="counter">
+found: <span id="foundCount">0</span> / 7
+</div>
 
-      <div class="room-board">
 
-        <!-- Polaroid -->
-        <button class="object polaroid" onclick="showPopup(
-          'A little picture',
-          'Something worth keeping close. Maybe there\\'s a memory hiding here...'
-        )">
+<div class="room-board">
 
-          <div class="polaroid-picture">
-            ♡
-          </div>
 
-        </button>
+<!-- POLAROID -->
 
+<button
+class="object polaroid"
+onclick="findObject(
+  this,
+  'A little picture',
+  'Something worth keeping close. Maybe there\\'s a memory hiding here...'
+)">
 
-        <!-- Envelope -->
-        <button class="object envelope" onclick="showPopup(
-          'For you',
-          'There\\'s a little something waiting inside this envelope.'
-        )">
-          💌
-        </button>
+<div class="polaroid-picture">
+♡
+</div>
 
+</button>
 
-        <!-- Calendar -->
-        <button class="object calendar" onclick="showPopup(
-          '13 September',
-          'The day this little story officially became two months old. ♡'
-        )">
 
-          <div class="calendar-top">
-            SEPTEMBER
-          </div>
+<!-- ENVELOPE -->
 
-          <div class="calendar-date">
-            13
-          </div>
+<button
+class="object envelope"
+onclick="findObject(
+  this,
+  'For you',
+  'There\\'s a little message waiting here. Keep it close, babe. ♡'
+)">
 
-        </button>
+💌
 
+</button>
 
-        <!-- Music -->
-        <button class="object music" onclick="showPopup(
-          'A song for us',
-          'Maybe there should be a little soundtrack playing while you explore this place...'
-        )">
 
-          <div class="music-disc">
-            ♪
-          </div>
+<!-- CALENDAR -->
 
-          <div class="music-text">
-            something for us ♡
-          </div>
+<button
+class="object calendar"
+onclick="findObject(
+  this,
+  '13 October',
+  'Two months already, and somehow having you around has become one of my favorite parts of my days. I'm really glad it's you'
+)">
 
-        </button>
+<div class="calendar-top">
+OCTOBER
+</div>
 
+<div class="calendar-date">
+13
+</div>
 
-        <!-- Plushie -->
-        <button class="object plushie" onclick="showPopup(
-          'the little one',
-          'He has been sitting here waiting for you this whole time. ♡'
-        )">
-          🧸
-        </button>
+</button>
 
 
-        <!-- Stars -->
-        <button class="object little-star ls1" onclick="showPopup(
-          'you found a star',
-          'One little thing hiding in our room. Keep looking...'
-        )">
-          ✦
-        </button>
+<!-- MUSIC -->
 
-        <button class="object little-star ls2" onclick="showPopup(
-          'another one',
-          'There might be more than one thing hidden around here.'
-        )">
-          ✧
-        </button>
+<button
+class="object music"
+onclick="findObject(
+  this,
+  'A song for us',
+  'Every little story deserves a soundtrack. Maybe this one will have one too...'
+)">
 
-      </div>
+<div class="music-disc">
+♪
+</div>
 
-    </section>
+<div class="music-text">
+something for us ♡
+</div>
 
+</button>
 
-    <!-- ================= POPUP ================= -->
 
-    <div id="popup" class="popup">
+<!-- PLUSHIE -->
 
-      <div class="popup-card">
+<button
+class="object plushie"
+onclick="findObject(
+  this,
+  'look at the little one',
+  'He has been sitting here waiting for you this whole time. ♡'
+)">
 
-        <h3 id="popup-title"></h3>
+🧸
 
-        <p id="popup-text"></p>
+</button>
 
-        <button class="close" onclick="closePopup()">
-          okay ♡
-        </button>
 
-      </div>
+<!-- STAR 1 -->
 
-    </div>
+<button
+class="object little-star ls1"
+onclick="findObject(
+  this,
+  'yay, you found a star',
+  'One little thing hiding in our room. Keep looking...'
+)">
 
-  </main>
+✦
 
+</button>
 
-  <script>
 
-    function openWelcome() {
+<!-- STAR 2 -->
 
-      document.getElementById("opening").style.display = "none";
+<button
+class="object little-star ls2"
+onclick="findObject(
+  this,
+  'another one',
+  'There might be more than one thing hidden around here.'
+)">
 
-      document.getElementById("welcome").style.display = "block";
+✧
 
-    }
+</button>
 
 
-    function enterRoom() {
+</div>
 
-      document.getElementById("welcome").style.display = "none";
 
-      document.getElementById("room").style.display = "block";
+<button
+id="continueButton"
+onclick="goToPuzzle()">
 
-    }
+YOU FOUND EVERYTHING ♡
 
+</button>
 
-    function showPopup(title, text) {
+</section>
 
-      document.getElementById("popup-title").textContent = title;
 
-      document.getElementById("popup-text").textContent = text;
+<!-- ================= POPUP ================= -->
 
-      document.getElementById("popup").style.display = "flex";
+<div id="popup" class="popup">
 
-    }
+<div class="popup-card">
 
+<h3 id="popup-title"></h3>
 
-    function closePopup() {
+<p id="popup-text"></p>
 
-      document.getElementById("popup").style.display = "none";
+<button class="close" onclick="closePopup()">
+okay ♡
+</button>
 
-    }
+</div>
 
-  </script>
+</div>
+
+
+</main>
+
+
+<script>
+
+let found = 0;
+
+
+function openWelcome() {
+
+document.getElementById("opening").style.display = "none";
+
+document.getElementById("welcome").style.display = "block";
+
+}
+
+
+function enterRoom() {
+
+document.getElementById("welcome").style.display = "none";
+
+document.getElementById("room").style.display = "block";
+
+}
+
+
+function findObject(element, title, text) {
+
+if (!element.classList.contains("found")) {
+
+element.classList.add("found");
+
+found++;
+
+document.getElementById("foundCount").textContent = found;
+
+}
+
+showPopup(title, text);
+
+
+if (found === 7) {
+
+setTimeout(() => {
+
+document.getElementById("continueButton").style.display = "block";
+
+}, 300);
+
+}
+
+}
+
+
+function showPopup(title, text) {
+
+document.getElementById("popup-title").textContent = title;
+
+document.getElementById("popup-text").textContent = text;
+
+document.getElementById("popup").style.display = "flex";
+
+}
+
+
+function closePopup() {
+
+document.getElementById("popup").style.display = "none";
+
+}
+
+
+function goToPuzzle() {
+
+alert("Next: PUT US TOGETHER ♡");
+
+}
+
+</script>
 
 </body>
-</html>
+  </html>
