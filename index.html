@@ -1,1 +1,348 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#210b10">
+<title>For Jean — 13 October 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --wine: #681e31;
+  --deep: #210b10;
+  --cream: #f1e6d5;
+  --muted: #bda5a0;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--deep);
+  color: var(--cream);
+  font-family: 'DM Sans', sans-serif;
+}
+button { font: inherit; }
+#app {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(ellipse at 50% 42%, #54202b 0%, #2d1018 42%, #16080c 100%);
+  overflow: hidden;
+  position: relative;
+}
+#app::before {
+  content: "";
+  position: fixed;
+  inset: 12px;
+  border: 1px solid #c5a58c42;
+  pointer-events: none;
+  z-index: 3;
+}
+header, footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 27px 30px;
+  color: #d6c2b7;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+header { border-bottom: 1px solid #f1e6d51a; }
+footer { border-top: 1px solid #f1e6d51a; }
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 45px 28px;
+}
+.slide {
+  width: 100%;
+  max-width: 540px;
+  text-align: center;
+  animation: appear .65s ease both;
+}
+@keyframes appear {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.eyebrow {
+  font-size: 9px;
+  letter-spacing: 4px;
+  color: #cba99b;
+  text-transform: uppercase;
+  margin-bottom: 27px;
+}
+h1, h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 400;
+}
+h1 {
+  font-size: clamp(43px, 11vw, 76px);
+  line-height: .98;
+  margin: 0;
+}
+h2 {
+  font-size: clamp(36px, 8vw, 55px);
+  line-height: 1.05;
+  margin: 0 0 26px;
+}
+h1 em, h2 em { color: #d4a69f; font-weight: 400; }
+.rule {
+  width: 45px;
+  height: 1px;
+  background: #c7a18d;
+  margin: 27px auto;
+}
+.copy {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 21px;
+  line-height: 1.6;
+  color: #eadbce;
+  white-space: pre-line;
+  max-width: 440px;
+  margin: 0 auto;
+}
+.signature {
+  margin-top: 30px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 22px;
+  color: #d8b8aa;
+}
+.cover h1 { font-size: clamp(48px, 12vw, 84px); }
+.cover .script {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 25px;
+  color: #d6b1a4;
+  margin-bottom: 19px;
+}
+.cover .sub {
+  margin-top: 26px;
+  font-size: 10px;
+  line-height: 2.2;
+  letter-spacing: 3px;
+  color: #d6c2b7;
+}
+.cover .heart {
+  font-size: 23px;
+  color: #c98b8b;
+  margin-top: 35px;
+}
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  align-items: center;
+}
+.btn {
+  border: 1px solid #c6a28f80;
+  background: transparent;
+  color: var(--cream);
+  padding: 13px 22px;
+  min-width: 115px;
+  cursor: pointer;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: .25s;
+}
+.btn.primary { background: var(--cream); color: var(--deep); }
+.btn:hover { background: var(--wine); color: white; }
+.btn.primary:hover { background: #d9b8a8; }
+.btn:disabled { opacity: .25; cursor: default; }
+.progress {
+  width: 100%;
+  max-width: 190px;
+  height: 2px;
+  background: #ffffff20;
+  margin: 20px auto 0;
+}
+#bar { height: 100%; background: #c69a8a; transition: width .3s; }
+#count { font-size: 9px; letter-spacing: 3px; color: #d6b8ad; }
+.small-note {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #bca09b;
+  margin-top: 28px;
+  text-transform: uppercase;
+}
+@media (max-width: 480px) {
+  header, footer { padding: 23px 25px; font-size: 8px; letter-spacing: 2px; }
+  main { padding: 38px 27px; }
+  .copy { font-size: 20px; }
+  .btn { padding: 13px 16px; min-width: 100px; }
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <span>Brian → Jean</span>
+    <span>13 October 2026</span>
+  </header>
+
+  <main><section class="slide cover" id="slide" aria-live="polite"></section></main>
+
+  <div style="text-align:center;padding:0 24px 24px">
+    <div class="controls">
+      <button class="btn" id="prev" onclick="move(-1)">← Previous</button>
+      <span id="count">01 / 13</span>
+      <button class="btn primary" id="next" onclick="move(1)">Begin ♡</button>
+    </div>
+    <div class="progress"><div id="bar" style="width:7.69%"></div></div>
+  </div>
+
+  <footer>
+    <span>A letter in thirteen parts</span>
+    <span>Made with love</span>
+  </footer>
+</div>
+
+<script>
+const pages = [
+{
+  title: 'Happy 2nd<br>Monthsary',
+  cover: true,
+  text: 'I MADE THIS<br>FOR YOU',
+  note: 'A SMALL WORLD, MADE FOR ONE PERSON.',
+  sign: '13 · 10 · 2026'
+},
+{
+  label: 'I. A Dedication',
+  title: 'To my <em>favourite</em> person.',
+  text: 'If these pages could hold a fraction of what you mean to me, they would still fall short. Yet I wanted to try to give my feelings somewhere to live beyond the passing hours, somewhere you could return to whenever you wished to remember how dearly you are loved.',
+  sign: 'For you, Jean.'
+},
+{
+  label: 'II. The Unlikeliest Thing',
+  title: 'Out of all the lives we might have lived…',
+  text: '…somehow, our paths crossed. I find something quietly extraordinary in that. The world is impossibly vast, time is always moving, and people pass one another every day without ever becoming anything more than strangers. And then there is you, someone who became familiar to my heart in ways I could never have planned.',
+  sign: 'What a beautiful coincidence.'
+},
+{
+  label: 'III. The Little Things',
+  title: 'I love you in the details.',
+  text: 'In the way you tell me every little thing that crosses your mind. In your clinginess, your occasional fierceness, and that ridiculous sweetness you probably do not realise you possess. In the moments you make me smile without trying. I am learning that affection is rarely one grand revelation; more often, it is a thousand little things that keep choosing the same person.',
+  sign: 'And I keep choosing you, sayang.'
+},
+{
+  label: 'IV. A Place to Rest',
+  title: 'You do not always have to be strong.',
+  text: 'My dear, I hope the world is gentle with you. But on the days it is not, I hope you remember that you need not arrive with a smile, a clever story, or the strength to explain everything. You may come as you are tired, uncertain, quiet, or full of words. You never have to earn the right to be heard.',
+  sign: 'There is room for every version of you.'
+},
+{
+  label: 'V. The Language of Us',
+  title: 'Somewhere between hello and home.',
+  text: 'We have our own little language: the random conversations, the teasing, the stories that wander nowhere in particular. Perhaps none of it would seem remarkable to anyone else. That is precisely what makes it precious to me. Ordinary moments become extraordinary when they belong to someone you would gladly spend another ordinary day with.',
+  sign: 'I like our little world.'
+},
+{
+  label: 'VI. What I Would Keep',
+  title: 'If I could preserve a moment…',
+  text: 'I would not ask time to stop during some grand occasion. I would keep the simple moments instead: a conversation that lasts longer than expected, a glimpse of your softer side, the comfort of knowing you are there. Those are the memories that settle quietly into the heart, until one day you realise they have become part of the way you understand happiness.',
+  sign: 'Little moments. Lasting meaning.'
+},
+{
+  label: 'VII. What You Give Me',
+  title: 'Thank you for letting me matter.',
+  text: 'You may not know how much it means to be someone you turn to. To be trusted with your stories, your thoughts, and the things you might not tell just anyone. I never want to take that trust lightly. Being beside you is not a role I wish to claim; it is a place I feel grateful whenever you choose to share with me.',
+  sign: 'Thank you for choosing me, too.'
+},
+{
+  label: 'VIII. On Difficult Days',
+  title: 'Even the moon has its quieter nights.',
+  text: 'You are allowed to have days when you cannot find the right words, when everything feels heavier than it should, or when you simply need a little patience. None of those days diminishes the person you are. I hope you offer yourself the same tenderness you so freely give to the people you love. You deserve gentleness, especially from yourself.',
+  sign: 'You are precious beyond your brightest days.'
+},
+{
+  label: 'IX. Two Months',
+  title: 'Two months, and a thousand little meanings.',
+  text: 'Two months may be a small measure of time to the world, but time has never been the only measure of what matters. There is the care we learn, the trust we build, the laughter we return to, and the willingness to understand one another a little better. I do not need our story to be perfect. I only hope we keep meeting it with honesty, patience, and affection.',
+  sign: 'Happy second monthsary, my love.'
+},
+{
+  label: 'X. A Letter to Jean',
+  title: 'If my heart could speak without interruption…',
+  text: 'It would tell you that your presence has become one of my favourite parts of being here. That I love hearing about the things you care about, even the things you think are too small to mention. That I am proud of you in ways I may not always know how to express. And that, among all the things I could wish for you, I hope you never mistake a difficult day for an unworthy life, or a quiet season for a lack of love.\n\nYou do not have to be extraordinary every moment. You do not have to find the perfect words. You can simply be Jean, and that is already someone I am grateful to know.',
+  sign: 'With all the tenderness I have, — Brian'
+},
+{
+  label: 'XI. If You Ever Wonder',
+  title: 'You do not have to earn your place here.',
+  text: 'You need not be endlessly cheerful, endlessly interesting, or endlessly certain of yourself to matter to me. Affection is not a prize awarded for performing happiness. I care about the person beneath all those expectations—the one who has hopes, worries, peculiar little habits, and a heart that deserves to be treated with care. I hope my actions, not only these words, remind you of that.',
+  sign: 'You are enough as you are.'
+},
+{
+  label: 'XII. My Quiet Promise',
+  title: 'I cannot promise a life without change.',
+  text: 'I cannot tell the future what to do, nor can I promise that every day will be easy. What I can offer is something more honest: the intention to listen, to learn you better, to speak with care, and to keep making room for the person you are becoming. I hope we give each other the freedom to grow, and the kindness to find our way through the days that ask more of us.',
+  sign: 'One day at a time. Together, if we choose.'
+},
+{
+  label: 'XIII. The Last Page',
+  title: 'And still, <em>I would choose you.</em>',
+  text: 'If I could return to the beginning of these two months, knowing every little thing I know now, I would still want to discover you. I would still want the conversations, the laughter, the softness, and the ordinary days that have quietly become dear to me.\n\nHappy 2nd monthsary, Jean. Thank you for being part of this chapter of my life. May the pages ahead give us more reasons to understand one another, more moments worth keeping, and more chances to choose kindness in the way we love.',
+  sign: 'Yours in this chapter. Your man, Brian.',
+  last: true
+}
+];
+
+let current = 0;
+const slide = document.getElementById('slide');
+const prev = document.getElementById('prev');
+const next = document.getElementById('next');
+const count = document.getElementById('count');
+const bar = document.getElementById('bar');
+
+function render() {
+  const p = pages[current];
+  slide.className = 'slide' + (p.cover ? ' cover' : '');
+  slide.innerHTML = p.cover
+    ? `<div class="eyebrow">A little something, made for you</div>
+       <div class="script">For the girl who became a favourite chapter</div>
+       <h1>${p.title}</h1>
+       <div class="rule"></div>
+       <h1 style="font-size:clamp(36px,9vw,62px)">${p.text}</h1>
+       <div class="sub">BRIAN → JEAN<br>${p.note}<br><br>${p.sign}</div>
+       <div class="heart">♡</div>`
+    : `<div class="eyebrow">${p.label}</div>
+       <h2>${p.title}</h2>
+       <div class="rule"></div>
+       <div class="copy">${p.text}</div>
+       <div class="signature">${p.sign}</div>
+       ${p.last ? '<div class="small-note">Happy 2nd Monthsary · 13 October 2026</div>' : ''}`;
+
+  count.textContent = String(current + 1).padStart(2, '0') + ' / 13';
+  bar.style.width = ((current + 1) / pages.length * 100) + '%';
+  prev.disabled = current === 0;
+  next.textContent = current === 0 ? 'Begin ♡' :
+    current === pages.length - 1 ? 'Read again ↺' : 'Continue →';
+  window.scrollTo(0, 0);
+}
+
+function move(direction) {
+  if (current === pages.length - 1 && direction === 1) {
+    current = 0;
+  } else {
+    current = Math.max(0, Math.min(pages.length - 1, current + direction));
+  }
+  render();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight') move(1);
+  if (e.key === 'ArrowLeft') move(-1);
+});
+
+render();
+</script>
+</body>
+  </html>
+  
